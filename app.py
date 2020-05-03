@@ -1,5 +1,6 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from flask_mysqldb import MySQL
+import MySQLdb
 
 app = Flask(__name__)
 
@@ -11,13 +12,40 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_DB'] = 'Pokemon_Database'
 
 
+# @app.route('/')
+# def index():
+#     cur = mysql.connection.cursor()
+#     cur.execute("SELECT * from pokemon")
+#     fetchdata = cur.fetchall()
+#     cur.close()
+#     return render_template('login.html', data = fetchdata)
+
+
 @app.route('/')
-def index():
+def login():
+    return render_template('login.html', title='data')
+
+@app.route('/checkUser', methods=["POST"])
+def check():
+    username = str(request.form["user"])
+    password = str(request.form["password"])
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * from pokemon")
-    fetchdata = cur.fetchall()
-    cur.close()
-    return render_template('login.html', data = fetchdata)
+
+    #TODO: Prevent SQL Injection
+    cur.execute("SELECT login_id FROM login WHERE login_id = %s AND password = %s", (username, password,))
+
+    user = cur.fetchone()
+
+    if len(user) is 1:
+        # Redirects page to home page
+        return redirect(url_for("home"))
+    else:
+        return "failed"
+
+@app.route('/login')
+def home():
+    return render_template('index.html', title='data')
+
     
 
 if __name__ == "__main__":

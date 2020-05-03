@@ -4,16 +4,11 @@
 {% endblock%}
 
 {% block body %}
-<form>
-  <fieldset>
-    <div class="form-group">
-      <label for="loginID">User Name</label>
-      <input type="email" class="form-control" id="loginID" aria-describedby="emailHelp" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-      <label for="inputPassword">Password</label>
-      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-    </div>
-  </fieldset>
+<fieldset>
+<form action="/checkUser" method="post">
+  <input type="text" name="user" placeholder="username">
+  <input type="password" name="password" placeholder="password">
+  <input type="submit">
 </form>
+</fieldset>
 {% endblock %}

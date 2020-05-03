@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_mysqldb import MySQL
 import MySQLdb
-import mysql.connector 
+
 
 app = Flask(__name__)
 
@@ -72,7 +72,7 @@ def index():
         pID = request.form['pokedexNumber']
         pLEV = request.form['pokemonLevel']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO collection(capture_id, trainer_id, pokedex_number, pokemon_level) VALUES(%s,%s,%s,%s" % (cID, tID, pID, pLEV))
+        cur.execute("INSERT INTO collection(capture_id, trainer_id, pokedex_number, pokemon_level) VALUES(%s,%s,%s,%s)" % (cID, tID, pID, pLEV))
         mysql.connection.commit()
         return render_template('index.html')
     return render_template('index.html')

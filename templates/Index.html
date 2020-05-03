@@ -106,26 +106,26 @@
                 </select>
         </div>
 
-            <div class="form-group">
-                <label for="exampleSelect1">Egg Group 2</label>
-                <select class="form-control" id="selectEgg2" name="selectEgg2" aria-describedby="selectEgg2">
-                    <option></option>
-                    <option>Monster</option>
-                    <option>Water 1</option>
-                    <option>Bug</option>
-                    <option>Flying</option>
-                    <option>Field</option>
-                    <option>Fairy</option>
-                    <option>Grass</option>
-                    <option>Human-Like</option>
-                    <option>Water 3</option>
-                    <option>Mineral</option>
-                    <option>Amorphous</option>
-                    <option>Water 2</option>
-                    <option>Ditto</option>
-                    <option>Dragon</option>
-                    <option>Undiscovered</option>
-                </select>
+        <div class="form-group">
+            <label for="exampleSelect1">Egg Group 2</label>
+            <select class="form-control" id="selectEgg2" name="selectEgg2" aria-describedby="selectEgg2">
+                <option></option>
+                <option>Monster</option>
+                <option>Water 1</option>
+                <option>Bug</option>
+                <option>Flying</option>
+                <option>Field</option>
+                <option>Fairy</option>
+                <option>Grass</option>
+                <option>Human-Like</option>
+                <option>Water 3</option>
+                <option>Mineral</option>
+                <option>Amorphous</option>
+                <option>Water 2</option>
+                <option>Ditto</option>
+                <option>Dragon</option>
+                <option>Undiscovered</option>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary" name="pokedex_search">Search</button>
@@ -154,7 +154,6 @@
     </fieldset>
 </form>
 
-
 <form method = "POST">
     <fieldset>
         <legend>Search Criteria</legend>
@@ -162,10 +161,10 @@
             <label for="trainerID">Enter Trainer ID</label>
             <input type="text" class="form-control" id="trainerID" name="trainerID" aria-describedby="trainerIDhelp" placeholder="Enter 6 Digit Trainer ID" maxlength="6">
         </div>
-        <button type="submit" class="btn btn-primary" name="form1">Search</button>
+        <button type="submit" class="btn btn-primary" name="trainerCollection">Search</button>
     </fieldset>
 </form>
-
+<hr>
 <form method = "POST">
     <fieldset>
         <legend>Search Criteria</legend>
@@ -181,19 +180,74 @@
     <fieldset>
         <legend>Add Pokemon</legend>
         <div class="form-group">
+                <label for="captureID">Enter captureID</label>
+                <input type="text" class="form-control" id="captureID" name="captureID" aria-describedby="captureID" placeholder="Enter Capture ID" maxlength="6">
+            <hr>
+                <label for="trainerID">Trainer ID</label>
+                <input type="text" class="form-control" id="trainerID" name="trainerID" aria-describedby="trainerID" placeholder="Enter Trainer ID" maxlength="6">
+            <hr>
+                <label for="gender"> Gender</label>
+                <select class="form-control" name = "gender">
+                    <option></option>
+                    <option>M</option>
+                    <option>F</option>
+                </select>
+            <hr>
+                <label for="pokedexNumber">Pokedex Number</label>
+                <input type="text" class="form-control" id="pokedexNumber" name="pokedexNumber" aria-describedby="pokedexNumber" placeholder="Enter Pokedex Number" maxlength="6">
+            <hr>
+                <label for="pokemonLevel">Pokedex Level</label>
+                <input type="text" class="form-control" id="pokemonLevel" name="pokemonLevel" aria-describedby="pokemonLevel" placeholder="Enter Pokemon Level " maxlength="6">
+            <hr>
+                <label for="nickname">Nickname</label>
+                <input type="text" class="form-control"
+                name = "nickname" placeholder = "Enter Pokemon Nickname" maxlength = "30">
+            <hr>
+            <label for="nature">Nature</label>
+            <select class="form-control" name="nature" placeholder = "Select Nature">
+                <option></option>
+                <option>Adamant</option>
+                <option>Bashful</option>
+                <option>Bold</option>
+                <option>Brave</option>
+                <option>Calm</option>
+                <option>Careful</option>
+                <option>Docile</option>
+                <option>Gentle</option>
+                <option>Hardy</option>
+                <option>Hasty</option>
+                <option>Impish</option>
+                <option>Jolly</option>
+                <option>Lax</option>
+                <option>Lonely</option>
+                <option>Mild</option>
+                <option>Modest</option>
+                <option>Naive</option>
+                <option>Naughty</option>
+                <option>Quiet</option>
+                <option>Quirky</option>
+                <option>Rash</option>
+                <option>Relaxed</option>
+                <option>Sassy</option>
+                <option>Serious</option>
+                <option>Timid</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" name="addPokemon">Add</button>
+    </fieldset>
+</form>
+
+<form method = "POST">
+    <fieldset>
+        <legend>Switch Pokemon Lineup</legend>
+        <div class="form-group">
             <label for="captureID">Enter captureID</label>
             <input type="text" class="form-control" id="captureID" name="captureID" aria-describedby="captureID" placeholder="Enter Capture ID" maxlength="6">
             <hr>
             <label for="trainerID">Trainer ID</label>
             <input type="text" class="form-control" id="trainerID" name="trainerID" aria-describedby="trainerID" placeholder="Enter Trainer ID" maxlength="6">
-            <hr>
-            <label for="pokedexNumber">Pokedex Number</label>
-            <input type="text" class="form-control" id="pokedexNumber" name="pokedexNumber" aria-describedby="pokedexNumber" placeholder="Enter Pokedex Number" maxlength="6">
-            <hr>
-            <label for="pokemonLevel">Pokedex Level</label>
-            <input type="text" class="form-control" id="pokemonLevel" name="pokemonLevel" aria-describedby="pokemonLevel" placeholder="Enter Pokemon Level " maxlength="6">
         </div>
-        <button type="submit" class="btn btn-primary" name="form3">Add</button>
+        <button type="submit" class="btn btn-primary" name="switchLineup">Switch Roster</button>
     </fieldset>
 </form>
 
@@ -216,6 +270,34 @@
         <td>{{item[1]}}</td>
         <td>{{item[2]}}</td>
         <td>{{item[3]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<table border = "1">
+    {% for item in collection_labels %}
+    <tr>
+        <th>Capture ID</th>
+        <th>Trainer ID</th>
+        <th>Pokemon Gender</th>
+        <th>Pokedex Number</th>
+        <th>Pokemon Level</th>
+        <th>Nickname</th>
+        <th>Nature</th>
+        <th>In Roster</th>
+    </tr>
+    {% endfor %}
+</table>
+<table border = "1">
+    {% for item in collection_data  %}
+    <tr>
+        <td>{{item[0]}}        </td>
+        <td>{{item[1]}}        </td>
+        <td>{{item[2]}}        </td>
+        <td>{{item[3]}}        </td>
+        <td>{{item[4]}}        </td>
+        <td>{{item[5]}}        </td>
+        <td>{{item[6]}}        </td>
+        <td>{{item[7]}}        </td>
     </tr>
     {% endfor %}
 </table>

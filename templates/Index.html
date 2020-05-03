@@ -17,102 +17,38 @@
             <label for="trainerID">Enter Trainer ID</label>
             <input type="text" class="form-control" id="trainerID" name="trainerID" aria-describedby="trainerIDhelp" placeholder="Enter 6 Digit Trainer ID" maxlength="6">
         </div>
+        <button type="submit" class="btn btn-primary" name="form1">Search</button>
+    </fieldset>
+</form>
+
+<form method = "POST">
+    <fieldset>
+        <legend>Search Criteria</legend>
         <div class="form-group">
-            <label for="exampleSelect1">Type 1</label>
-            <select class="form-control" id="selectType1">
-                <option>-</option>
-                <option>Bug</option>
-                <option>Dark</option>
-                <option>Dragon</option>
-                <option>Electric</option>
-                <option>Fairy</option>
-                <option>Fighting</option>
-                <option>Fire</option>
-                <option>Flying</option>
-                <option>Ghost</option>
-                <option>Grass</option>
-                <option>Ground</option>
-                <option>Ice</option>
-                <option>Normal</option>
-                <option>Poison</option>
-                <option>Psychic</option>
-                <option>Rock</option>
-                <option>Steel</option>
-                <option>Water</option>
-            </select>
+            <label for="pokedex">Enter Pokedex</label>
+            <input type="text" class="form-control" id="pokedex" name="pokedex" aria-describedby="pokedex" placeholder="Enter Pokedex Number" maxlength="6">
         </div>
+        <button type="submit" class="btn btn-primary" name="form2">Search</button>
+    </fieldset>
+</form>
 
+<form method = "POST">
+    <fieldset>
+        <legend>Add Pokemon</legend>
         <div class="form-group">
-            <label for="exampleSelect1">Type 2</label>
-            <select class="form-control" id="selectType2">
-                <option>-</option>
-                <option>Bug</option>
-                <option>Dark</option>
-                <option>Dragon</option>
-                <option>Electric</option>
-                <option>Fairy</option>
-                <option>Fighting</option>
-                <option>Fire</option>
-                <option>Flying</option>
-                <option>Ghost</option>
-                <option>Grass</option>
-                <option>Ground</option>
-                <option>Ice</option>
-                <option>Normal</option>
-                <option>Poison</option>
-                <option>Psychic</option>
-                <option>Rock</option>
-                <option>Steel</option>
-                <option>Water</option>
-            </select>
+            <label for="captureID">Enter captureID</label>
+            <input type="text" class="form-control" id="captureID" name="captureID" aria-describedby="captureID" placeholder="Enter Capture ID" maxlength="6">
+            <hr>
+            <label for="trainerID">Trainer ID</label>
+            <input type="text" class="form-control" id="trainerID" name="trainerID" aria-describedby="trainerID" placeholder="Enter Trainer ID" maxlength="6">
+            <hr>
+            <label for="pokedexNumber">Pokedex Number</label>
+            <input type="text" class="form-control" id="pokedexNumber" name="pokedexNumber" aria-describedby="pokedexNumber" placeholder="Enter Pokedex Number" maxlength="6">
+            <hr>
+            <label for="pokemonLevel">Pokedex Level</label>
+            <input type="text" class="form-control" id="pokemonLevel" name="pokemonLevel" aria-describedby="pokemonLevel" placeholder="Enter Pokemon Level " maxlength="6">
         </div>
-
-        <div class="form-group">
-            <label for="exampleSelect1">Gender</label>
-            <select class="form-control" id="genderSelect">
-                <option disabled selected> -- select an option -- </option>
-                <option>-</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>None</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="exampleSelect1">Nature</label>
-            <select class="form-control" id="natureSelect">
-                <option disabled selected> -- select an option -- </option>
-                <option>-</option>
-                <option>Adamant</option>
-                <option>Bashful</option>
-                <option>Bold</option>
-                <option>Brave</option>
-                <option>Calm</option>
-                <option>Careful</option>
-                <option>Docile</option>
-                <option>Gentle</option>
-                <option>Hardy</option>
-                <option>Hasty</option>
-                <option>Impish</option>
-                <option>Jolly</option>
-                <option>Lax</option>
-                <option>Lonely</option>
-                <option>Mild</option>
-                <option>Modest</option>
-                <option>Naive</option>
-                <option>Naughty</option>
-                <option>Quiet</option>
-                <option>Quirky</option>
-                <option>Rash</option>
-                <option>Relaxed</option>
-                <option>Sassy</option>
-                <option>Serious</option>
-                <option>Timid</option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Search</button>
-
+        <button type="submit" class="btn btn-primary" name="form3">Add</button>
     </fieldset>
 </form>
 

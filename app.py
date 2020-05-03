@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+
 from flask_mysqldb import MySQL
 import MySQLdb
 
@@ -10,6 +11,7 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_DB'] = 'Pokemon_Database'
+
 
 
 # @app.route('/')
@@ -47,6 +49,17 @@ def home():
     return render_template('index.html', title='data')
 
     
+
+@app.route('/', methods=['GET','POST'])
+def index():
+    if request.method == "POST":
+        tID = request.form['trainerID']
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM COLLECTION WHERE trainer_id = %s" % (tID))
+        fetchdata = cur.fetchall()
+        return render_template('index.html', data = fetchdata)
+    return render_template('index.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -12,8 +12,6 @@ app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_DB'] = 'Pokemon_Database'
 
-
-
 # @app.route('/')
 # def index():
 #     cur = mysql.connection.cursor()
@@ -21,7 +19,6 @@ app.config['MYSQL_DB'] = 'Pokemon_Database'
 #     fetchdata = cur.fetchall()
 #     cur.close()
 #     return render_template('login.html', data = fetchdata)
-
 
 @app.route('/')
 def login():
@@ -40,17 +37,11 @@ def check():
 
     if len(user) is 1:
         # Redirects page to home page
-        return redirect(url_for("home"))
+        return redirect(url_for("index"))
     else:
         return "failed"
 
-@app.route('/login')
-def home():
-    return render_template('index.html', title='data')
-
-    
-
-@app.route('/', methods=['GET','POST'])
+@app.route('/index', methods=['GET','POST'])
 def index():
     if request.method == "POST":
         tID = request.form['trainerID']
@@ -59,6 +50,7 @@ def index():
         fetchdata = cur.fetchall()
         return render_template('index.html', data = fetchdata)
     return render_template('index.html')
+
 
 
 if __name__ == "__main__":

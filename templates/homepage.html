@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Login</title>
+{% endblock%}
+
+{% block body %}
+<fieldset>
+<form action="/checkUser" method="post">
+  <input type="text" name="user" placeholder="username">
+  <input type="password" name="password" placeholder="password">
+  <input type="submit">
+</form>
+</fieldset>
+{% endblock %}

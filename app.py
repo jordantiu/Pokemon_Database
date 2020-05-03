@@ -39,7 +39,7 @@ def check():
         # Redirects page to home page
         return redirect(url_for("index"))
     else:
-        return "failed"
+        return redirect(url_for("check"))
 
 @app.route('/index', methods=['GET','POST'])
 def index():

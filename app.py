@@ -96,14 +96,13 @@ def index():
 
         return render_template('index.html', pokedex_data = fetch_pokedex, pokedex_labels = labels)
 
-
-
-    if request.method == "POST" and 'form1' in request.form:
+    if request.method == "POST" and 'trainerCollection' in request.form:
+        labels = ["Label"]
         tID = request.form['trainerID']
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM COLLECTION WHERE trainer_id = %s" % (tID))
         fetchdata = cur.fetchall()
-        return render_template('index.html', data = fetchdata)
+        return render_template('index.html', collection_data = fetchdata, collection_labels = labels)
 
     if request.method == "POST" and 'form2' in request.form:
         pID = request.form['pokedex']
@@ -112,15 +111,28 @@ def index():
         fetchdata = cur.fetchall()
         return render_template('index.html', data = fetchdata)
 
-    if request.method == "POST" and 'form3' in request.form:
+    if request.method == "POST" and 'addPokemon' in request.form:
         cID = request.form['captureID']
         tID = request.form['trainerID']
+        gender = request.form['gender']
         pID = request.form['pokedexNumber']
         pLEV = request.form['pokemonLevel']
+        nick = request.form['nickname']
+        nature = request.form['nature']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO collection(capture_id, trainer_id, pokedex_number, pokemon_level) VALUES(%s,%s,%s,%s)" % (cID, tID, pID, pLEV))
+        cur.execute("INSERT INTO collection(capture_id, trainer_id, pokemon_gender, pokedex_number, pokemon_level, nickname, nature, in_roster) VALUES(%s,%s,%s,%s,%s, %s, %s, 0)" , (cID, tID, gender, pID, pLEV, nick, nature,))
         mysql.connection.commit()
         return render_template('index.html')
+
+
+    if request.method == "POST" and 'switchLineup' in request.form:
+        cID = request.form['captureID']
+        tID = request.form['trainerID']
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE collection SET in_roster = IF(in_roster = 0, 1, 0) WHERE trainer_id = %s AND capture_id = %s" % (tID, cID))
+        mysql.connection.commit()
+        return render_template('index.html')
+   
     return render_template('index.html')
 
 if __name__ == "__main__":

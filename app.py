@@ -29,6 +29,8 @@ def login():
 
 @app.route('/checkUser', methods=["POST"])
 def check():
+    global username
+
     username = str(request.form["user"])
     password = str(request.form["password"])
     cur = mysql.connection.cursor()
@@ -52,6 +54,50 @@ def home():
 
 @app.route('/index', methods=['GET','POST'])
 def index():
+    # print(username)
+    #
+    # get_trainer_id = mysql.connection.cursor()
+    # get_trainer_id.execute("SELECT trainer.trainer_id FROM login INNER JOIN trainer WHERE login.trainer_id = trainer.trainer_id AND login_id = %s", (username,))
+    # fetch_trainer_id = get_trainer_id.fetchall()
+    # print(fetch_trainer_id)
+
+    # get_trainer_info = mysql.connection.cursor()
+    # get_trainer_info.execute("Select trainer_name, gender, funds, badges from login INNER JOIN trainer WHERE login.trainer_id = trainer.trainer_id AND login_id = %s", (username,))
+    # fetch_trainer_info = get_trainer_info.fetchall()
+    # print(fetch_trainer_info)
+
+    if request.method == "POST" and 'logout' in request.form:
+        return render_template('login.html', title='data')
+
+    if request.method == "POST" and 'display_trainer' in request.form:
+        labels = ["Label"]
+        get_trainer_info = mysql.connection.cursor()
+        get_trainer_info.execute(
+            "Select trainer_name, gender, funds, badges from login INNER JOIN trainer WHERE login.trainer_id = trainer.trainer_id AND login_id = %s",
+            (username,))
+        fetch_trainer_info = get_trainer_info.fetchall()
+        return render_template('index.html', trainer_data = fetch_trainer_info, trainer_labels = labels)
+
+    if request.method == "POST" and 'form0' in request.form:
+
+        labels = ["Label"]
+
+        pokemon_name = request.form['inputPokemon']
+        type_1 = request.form['selectType1']
+        type_2 = request.form['selectType2']
+        egg_1 = request.form['selectEgg1']
+        egg_2 = request.form['selectEgg2']
+
+        cur = mysql.connection.cursor()
+
+        cur.execute("SELECT * FROM pokemon WHERE pokemon_name LIKE %s OR ((type1 = %s OR type2 = %s) OR (egg_group_1 = %s OR egg_group_2 = %s))",
+                    ("%" + pokemon_name + "%", type_1, type_2, egg_1, egg_2,))
+        fetch_pokedex = cur.fetchall()
+
+        return render_template('index.html', pokedex_data = fetch_pokedex, pokedex_labels = labels)
+
+
+
     if request.method == "POST" and 'form1' in request.form:
         tID = request.form['trainerID']
         cur = mysql.connection.cursor()
@@ -76,7 +122,6 @@ def index():
         mysql.connection.commit()
         return render_template('index.html')
     return render_template('index.html')
-
 
 if __name__ == "__main__":
     app.run(debug=True)

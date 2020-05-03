@@ -17,7 +17,7 @@ def index():
     cur.execute("SELECT * from pokemon")
     fetchdata = cur.fetchall()
     cur.close()
-    return render_template('index.html', data = fetchdata)
+    return render_template('login.html', data = fetchdata)
     
 
 if __name__ == "__main__":

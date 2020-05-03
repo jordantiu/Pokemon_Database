@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Login</title>
+{% endblock%}
+
+{% block body %}
+<form>
+  <fieldset>
+    <div class="form-group">
+      <label for="loginID">User Name</label>
+      <input type="email" class="form-control" id="loginID" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+    </div>
+  </fieldset>
+</form>
+{% endblock %}

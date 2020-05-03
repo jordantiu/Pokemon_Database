@@ -54,18 +54,6 @@ def home():
 
 @app.route('/index', methods=['GET','POST'])
 def index():
-    # print(username)
-    #
-    # get_trainer_id = mysql.connection.cursor()
-    # get_trainer_id.execute("SELECT trainer.trainer_id FROM login INNER JOIN trainer WHERE login.trainer_id = trainer.trainer_id AND login_id = %s", (username,))
-    # fetch_trainer_id = get_trainer_id.fetchall()
-    # print(fetch_trainer_id)
-
-    # get_trainer_info = mysql.connection.cursor()
-    # get_trainer_info.execute("Select trainer_name, gender, funds, badges from login INNER JOIN trainer WHERE login.trainer_id = trainer.trainer_id AND login_id = %s", (username,))
-    # fetch_trainer_info = get_trainer_info.fetchall()
-    # print(fetch_trainer_info)
-
     if request.method == "POST" and 'logout' in request.form:
         return render_template('login.html', title='data')
 
@@ -78,7 +66,7 @@ def index():
         fetch_trainer_info = get_trainer_info.fetchall()
         return render_template('index.html', trainer_data = fetch_trainer_info, trainer_labels = labels)
 
-    if request.method == "POST" and 'form0' in request.form:
+    if request.method == "POST" and 'pokedex_search' in request.form:
 
         labels = ["Label"]
 
@@ -90,13 +78,11 @@ def index():
 
         cur = mysql.connection.cursor()
 
-        cur.execute("SELECT * FROM pokemon WHERE pokemon_name LIKE %s OR ((type1 = %s OR type2 = %s) OR (egg_group_1 = %s OR egg_group_2 = %s))",
-                    ("%" + pokemon_name + "%", type_1, type_2, egg_1, egg_2,))
+        cur.execute("SELECT * FROM pokemon WHERE pokemon_name = %s OR ((type1 = %s OR type2 = %s) OR (egg_group_1 = %s OR egg_group_2 = %s))",
+                    (pokemon_name, type_1, type_2, egg_1, egg_2,))
         fetch_pokedex = cur.fetchall()
 
-        return render_template('index.html', pokedex_data = fetch_pokedex, pokedex_labels = labels)
-
-
+        return render_template('index.html', pokedex_data=fetch_pokedex, pokedex_labels=labels)
 
     if request.method == "POST" and 'form1' in request.form:
         tID = request.form['trainerID']
@@ -121,7 +107,43 @@ def index():
         cur.execute("INSERT INTO collection(capture_id, trainer_id, pokedex_number, pokemon_level) VALUES(%s,%s,%s,%s)" % (cID, tID, pID, pLEV))
         mysql.connection.commit()
         return render_template('index.html')
+
+
+    # Display Entire Collection (Trainer Specific)
+    if request.method == "POST" and 'displayCollection' in request.form:
+        labels = ["Label"]
+        get_collection_info = mysql.connection.cursor()
+        get_collection_info.execute(
+            "SELECT trainer.trainer_id, collection.nickname, pokemon.pokemon_name, collection.pokemon_level, "
+            "collection.nature, pokemon.type1, pokemon.type2, collection.in_roster FROM trainer INNER JOIN collection "
+            "ON collection.trainer_id = trainer.trainer_id INNER JOIN pokemon ON collection.pokedex_number = "
+            "pokemon.pokedex_number INNER JOIN login ON trainer.trainer_id = login.trainer_id WHERE login_id = %s",
+            (username,))
+        fetch_collection = get_collection_info.fetchall()
+
+        return render_template('index.html', collection_data=fetch_collection, collection_labels=labels)
+
+    if request.method == "POST" and 'collection_search' in request.form:
+        labels = ["Label"]
+
+        pokemon_name = request.form['collectionInputPokemon']
+
+        get_collection_info = mysql.connection.cursor()
+
+        get_collection_info.execute(
+            "SELECT trainer.trainer_id, collection.nickname, pokemon.pokemon_name, collection.pokemon_level, "
+            "collection.nature, pokemon.type1, pokemon.type2, collection.in_roster FROM trainer INNER JOIN collection "
+            "ON collection.trainer_id = trainer.trainer_id INNER JOIN pokemon ON collection.pokedex_number = "
+            "pokemon.pokedex_number INNER JOIN login ON trainer.trainer_id = login.trainer_id WHERE login_id = %s AND pokemon_name = %s",
+            (username, pokemon_name,))
+
+        fetch_collection = get_collection_info.fetchall()
+
+        return render_template('index.html', collection_data=fetch_collection, collection_labels=labels)
+
     return render_template('index.html')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

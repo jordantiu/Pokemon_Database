@@ -10,16 +10,13 @@
 </div>
 <p>Use the search function below to filter Pokemon within the Pokedex.</p>
 
-<form>
+<form method = "POST">
     <fieldset>
         <legend>Search Criteria</legend>
-
         <div class="form-group">
-            <label for="trainerID_input">Enter Trainer ID</label>
-            <input type="text" class="form-control" id="trainerID_input" aria-describedby="trainerIDhelp" placeholder="Enter 6 Digit Trainer ID" maxlength="6">
+            <label for="trainerID">Enter Trainer ID</label>
+            <input type="text" class="form-control" id="trainerID" name="trainerID" aria-describedby="trainerIDhelp" placeholder="Enter 6 Digit Trainer ID" maxlength="6">
         </div>
-
-
         <div class="form-group">
             <label for="exampleSelect1">Type 1</label>
             <select class="form-control" id="selectType1">
@@ -118,5 +115,10 @@
 
     </fieldset>
 </form>
-{{for i in data: print(data)}}
+{% for item in data %}
+<tr>
+    <br>
+    <td>{{item[0]}} {{item[1]}} {{item[2]}}</td>
+</tr>
+{% endfor %}
 {% endblock %}

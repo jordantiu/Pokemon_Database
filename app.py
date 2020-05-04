@@ -39,7 +39,7 @@ def check():
 def home():
     return render_template('index.html', title='data')
 
-    
+
 
 @app.route('/index', methods=['GET','POST'])
 def index():
@@ -76,7 +76,7 @@ def index():
         pokemon_name = request.form['collectionInputPokemon']
         get_collection_info = mysql.connection.cursor()
         get_collection_info.execute(
-            "SELECT trainer.trainer_id, collection.nickname, pokemon.pokemon_name, collection.pokemon_level, "
+            "SELECT  trainer.trainer_id, collection.capture_id, collection.nickname, pokemon.pokemon_name, collection.pokemon_level, "
             "collection.nature, pokemon.type1, pokemon.type2, collection.in_roster FROM trainer INNER JOIN collection "
             "ON collection.trainer_id = trainer.trainer_id INNER JOIN pokemon ON collection.pokedex_number = "
             "pokemon.pokedex_number INNER JOIN login ON trainer.trainer_id = login.trainer_id WHERE login_id = %s AND pokemon_name = %s",

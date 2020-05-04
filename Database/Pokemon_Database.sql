@@ -55,20 +55,11 @@ CREATE TABLE evolution(
 CREATE TABLE login(
 	login_id VARCHAR(20) NOT NULL,
 	trainer_id VARCHAR(6) NOT NULL,
-    password VARCHAR(20) NULL,
-    PRIMARY KEY (login_id),
-    CONSTRAINT FK_login_id FOREIGN KEY (trainer_id) REFERENCES trainer(trainer_id)
-);
-
-/*
-CREATE TABLE login(
-	login_id VARCHAR(20) NOT NULL,
-	trainer_id VARCHAR(6) NOT NULL,
     password blob NOT NULL,
     PRIMARY KEY (login_id),
     CONSTRAINT FK_login_id FOREIGN KEY (trainer_id) REFERENCES trainer(trainer_id)
 );
-*/
+
 
 -- INSERT INTO pokemon VALUES ('name', pokedex_number, 'Type1', 'Type2', 'egg_group_1', 'Egg_group_2');
 INSERT INTO pokemon VALUES ('Bulbasaur', 1, 'Grass', 'Poison', 'Monster', 'Grass');
@@ -419,12 +410,7 @@ INSERT INTO login VALUES ('Red', '123456', 'password');
 INSERT INTO login VALUES ('Blue', '840123', 'password');
 INSERT INTO login VALUES ('Ash', '489213', 'icyeevee');
 
--- INSERT INTO login VALUES ('login_id', 'trainer_id', 'password');
--- INSERT INTO login VALUES ('Red', '123456', PASSWORD('password'));
--- INSERT INTO login VALUES ('Blue', '840123', PASSWORD('password'));
--- INSERT INTO login VALUES ('Ash', '489213', PASSWORD('icyeevee'));
-
-
+/*
 -- Query to find all pokemon and their trainers that are fairy type
 SELECT trainer.trainer_name, trainer.trainer_id, pokemon_name from trainer
 INNER JOIN collection
@@ -486,3 +472,5 @@ WHERE pokedex_number IN (
         SELECT collection.pokedex_number
         FROM trainer 
         INNER JOIN collection ON trainer.trainer_id = collection.trainer_id));
+        
+*/

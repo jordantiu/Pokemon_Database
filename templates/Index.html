@@ -8,7 +8,7 @@
 <div class="text-center">
     <h1 class="display-4">Pokemon Database Management System</h1>
 </div>
-<p>Use the search function below to filter Pokemon within the Pokedex.</p>
+<p>Use the search functions below to filter Pokemon within the Pokedex.</p>
 
 <!--Logout-->
 <form method = "POST">
@@ -280,7 +280,7 @@
     </tr>
     {% endfor %}
 
-{% for item in data %}
+{% for item in pokedex_data %}
 <tr>
     <td>{{item[0]}}</td>
     <td>{{item[1]}}</td>

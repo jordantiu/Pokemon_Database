@@ -92,7 +92,7 @@ def index():
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM pokemon WHERE pokedex_number = %s" % (pID))
         fetchdata = cur.fetchall()
-        return render_template('index.html', data = fetchdata, pokedex_labels=labels)
+        return render_template('index.html', pokedex_data = fetchdata, pokedex_labels=labels)
 
     # Search Pokedex
     if request.method == "POST" and 'pokedex_search' in request.form:
